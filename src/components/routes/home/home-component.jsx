@@ -1,4 +1,4 @@
-import CategoryContainer from "../../category-container.component";
+import CategoryContainer from '../../category-item/category-container.component'
 
 
 const categories = [
