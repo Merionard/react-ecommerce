@@ -5,6 +5,7 @@ import './sign-in-form.styles.scss'
 import {signInWithGooglePopup,mySignInWithUserAndPsw} from '../../utils/firebase/conf-firebase'
 
 
+
 const SignInForm = () =>{
 
     const defaultValues = {
@@ -13,7 +14,6 @@ const SignInForm = () =>{
     }
     const [fields,setFields] = useState(defaultValues);
     const {email,password} = fields;
-    console.log(fields);
 
 
     const handleChange = (event)=>{
@@ -26,7 +26,8 @@ const SignInForm = () =>{
 
         event.preventDefault();
         try {
-            mySignInWithUserAndPsw(email,password);
+            await mySignInWithUserAndPsw(email,password);
+
         } catch (error) {
             console.log(error)
         }
@@ -37,8 +38,7 @@ const SignInForm = () =>{
     const handleSignWithGoogle = async(event) =>{
         event.preventDefault();
         try {
-           const userAuth = await signInWithGooglePopup();
-           console.log(userAuth);
+             await signInWithGooglePopup();
         } catch (error) {
             console.log(error);
         } 
