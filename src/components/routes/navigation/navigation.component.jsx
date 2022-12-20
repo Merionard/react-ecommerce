@@ -4,8 +4,8 @@ import './navigation.styles.scss'
 import {ReactComponent as Logo} from '../../../assets/crown.svg';
 import { UserContext } from "../../../contexts/user.context";
 import { signOutUser } from "../../../utils/firebase/conf-firebase";
-import CardIcon from "../../card-icon/card-icon.component";
-import CardDropDown from "../../card-dropdown/card-dropdown.component";
+import CartIcon from "../../cart-icon/cart-icon.component";
+import CartDropDown from "../../cart-dropdown/cart-dropdown.component";
 import { BagContext } from "../../../contexts/bag.context";
 
 
@@ -31,9 +31,9 @@ const signOutHandler = async ()=>{
                     <span className="nav-link" onClick={signOutHandler}>Sign out</span>
                     )
                     :(<Link className="nav-link" to='/sign-in'>Sign in</Link>)}
-                    <CardIcon/>
+                    <CartIcon/>
                 </div>
-                {isBagOpen && <CardDropDown/>}
+                {isBagOpen && <CartDropDown/>}
             </div>
             <Outlet />
         </Fragment>
