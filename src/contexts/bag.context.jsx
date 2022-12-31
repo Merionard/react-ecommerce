@@ -4,8 +4,10 @@ export const BagContext = createContext({
     isBagOpen: false,
     setBagOpen: () => { },
     cartItems: [],
-    addItemToCart: () => { },
-    countItems: 0
+    addItemToCard: () => { },
+    countItems: 0,
+    setQuantity: () => { },
+    removeItemToCard: () => { }
 })
 
 export const BagProvider = ({ children }) => {
@@ -22,7 +24,7 @@ export const BagProvider = ({ children }) => {
     }, [cartItems])
 
 
-    const addItemToCart = (productToAdd) => {
+    const addItemToCard = (productToAdd) => {
 
         const existingCartItem = cartItems.find(cartItem => cartItem.id === productToAdd.id);
         var newTab = null;
@@ -35,7 +37,20 @@ export const BagProvider = ({ children }) => {
         }
         setCartItems(newTab);
     }
-    const value = { isBagOpen, setBagOpen, addItemToCart, cartItems,countItems };
+
+    const setQuantity = (quantity, product) => {
+        const newTab = cartItems.map(cartItem => cartItem.id === product.id ? { ...cartItem, quantity: quantity } : cartItem)
+        setCartItems(newTab);
+
+    }
+
+    const removeItemToCard = (product) => {
+       const newTab= cartItems.filter(item => item.id !== product.id)
+       setCartItems(newTab);
+
+    }
+
+    const value = { isBagOpen, setBagOpen, addItemToCard, cartItems, countItems, setQuantity,removeItemToCard };
 
     return <BagContext.Provider value={value}>{children}</BagContext.Provider>
 }

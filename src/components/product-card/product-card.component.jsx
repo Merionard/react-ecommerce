@@ -6,9 +6,9 @@ import { BagContext } from "../../contexts/bag.context"
 
 const ProductCard = ({ product }) => {
     const { name, price, imageUrl } = product
-    const { addItemToCart } = useContext(BagContext)
+    const { addItemToCard } = useContext(BagContext)
 
-    const addProductToCart = () => addItemToCart(product);
+    const addProductToCart = () => addItemToCard(product);
     
     return (
         <div className="product-card-container">
