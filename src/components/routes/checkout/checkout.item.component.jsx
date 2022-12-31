@@ -4,12 +4,9 @@ import './checkout.item.styles.scss';
 
 const CheckOutItem = ({ item }) => {
 
-    const { setQuantity,removeItemToCard } = useContext(BagContext);
+    const { removeItemToCard,increment,decrement } = useContext(BagContext);
     const { name, imageUrl, quantity, price } = item;
 
-    const onChangeQuantity = (event) => {
-        setQuantity(event.target.value,item);
-    }
 
     const onDelete = () => {
         removeItemToCard(item);
@@ -23,9 +20,9 @@ const CheckOutItem = ({ item }) => {
         </div>
         <span className="name">{name}</span>
         <span className="quantity">
-            <div className="arrow">&#10094;</div>
+            <div className="arrow" onClick={()=>decrement(item)}>&#10094;</div>
         <span className="value">{quantity}</span>
-        <div className="arrow">&#10095;</div>
+        <div className="arrow" onClick={()=>increment(item)}>&#10095;</div>
         </span>
         <span className="price">{price}</span>
             
