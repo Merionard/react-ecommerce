@@ -8,7 +8,9 @@ export const BagContext = createContext({
     countItems: 0,
     increment: () => { },
     decrement: () => { },
-    removeItemToCard: () => { }
+    removeItemToCard: () => { },
+    totalPrice: 0
+
 })
 
 export const BagProvider = ({ children }) => {
@@ -16,11 +18,15 @@ export const BagProvider = ({ children }) => {
     const [isBagOpen, setBagOpen] = useState(false);
     const [cartItems, setCartItems] = useState([]);
     const [countItems, setCountItems] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
-
-        const total = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
-        setCountItems(total);
+        if (cartItems.length > 0) {
+            const total = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
+            const totalPrice = cartItems.map((cartItem) => cartItem.price * cartItem.quantity).reduce((total, price) => total + price, 0);
+            setCountItems(total);
+            setTotalPrice(totalPrice);
+        }
 
     }, [cartItems])
 
@@ -39,7 +45,7 @@ export const BagProvider = ({ children }) => {
         setCartItems(newTab);
     }
 
-    const increment =  (product) => {
+    const increment = (product) => {
         const newTab = cartItems.map(cartItem => cartItem.id === product.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem)
         setCartItems(newTab);
 
@@ -57,7 +63,8 @@ export const BagProvider = ({ children }) => {
 
     }
 
-    const value = { isBagOpen, setBagOpen, addItemToCard, cartItems, countItems, increment, decrement, removeItemToCard };
+
+    const value = { isBagOpen, setBagOpen, addItemToCard, cartItems, countItems, increment, decrement, removeItemToCard, totalPrice };
 
     return <BagContext.Provider value={value}>{children}</BagContext.Provider>
 }
