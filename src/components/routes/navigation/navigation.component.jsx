@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom"
 import './navigation.styles.scss'
 import {ReactComponent as Logo} from '../../../assets/crown.svg';
 import { UserContext } from "../../../contexts/user.context";
-import { signOutUser } from "../../../utils/firebase/conf-firebase";
+import { signOutUser } from "../../../utils/firebase/firebase.utils";
 import CartIcon from "../../cart-icon/cart-icon.component";
 import CartDropDown from "../../cart-dropdown/cart-dropdown.component";
 import { BagContext } from "../../../contexts/bag.context";
