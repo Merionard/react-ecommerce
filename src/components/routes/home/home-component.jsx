@@ -1,4 +1,4 @@
-import CategoryContainer from '../../category-item/category-container.component'
+import DirectoryContainer from '../../directory-item/directory-container.component'
 
 
 const categories = [
@@ -29,6 +29,6 @@ const categories = [
     }
   ]
 
-const Home = ()=>(<CategoryContainer categories={categories}/>)
+const Home = ()=>(<DirectoryContainer categories={categories}/>)
 
 export default Home;
